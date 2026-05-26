@@ -92,6 +92,8 @@ export type Dashboard = {
     deviceName: string;
     targetState: boolean;
     reason: string;
+    priceEurMwh: number;
+    priceSource: "fixed" | "exchange";
   }>;
   savings: SavingsReport;
   plannedSavings: SavingsReport;
@@ -154,7 +156,7 @@ export function getDeviceCommands(uid: string) {
 }
 
 export function runAutomation() {
-  return apiFetch<{results: Array<{uid: string; targetState: boolean; reason: string; changed: boolean; error?: string}>}>(
+  return apiFetch<{results: Array<{uid: string; targetState: boolean; reason: string; priceEurMwh: number; priceSource: "fixed" | "exchange"; changed: boolean; error?: string}>}>(
     "/v1/control/automation/run",
     {method: "POST"},
   );

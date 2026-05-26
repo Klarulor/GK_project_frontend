@@ -545,7 +545,11 @@ function DeviceRow({
           <span>{device.isCritical ? "Critical" : "Flexible"}</span>
           <span>{overrideLabel}</span>
         </div>
-        <p className="decision">{decision?.reason ?? "Waiting for price data"}</p>
+        <p className="decision">
+          {decision
+            ? `${decision.reason} (${decision.priceSource}, ${decision.priceEurMwh.toFixed(1)} EUR/MWh)`
+            : "Waiting for price data"}
+        </p>
         <div className="mini-form">
           <label>
             Threshold
